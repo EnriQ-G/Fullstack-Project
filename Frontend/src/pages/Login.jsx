@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import {useNavigate} from "react-router-dom"
+import {toast} from "react-toastify"
+import {login, reset} from "../features/auth/authSlice"
+import Spinner from "../components/Spinner"
 import {FaSignInAlt} from "react-icons/fa"
 
 export const Login = () => {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
-    password2: "",
   })
 
   const onChange = (e) => (
@@ -16,11 +19,34 @@ export const Login = () => {
     }))
   )
 
-  const { username, email, password, password2 } = formData
+  const { email, password} = formData
+  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (isError){
+      toast.error(message)
+    } if(isSuccess || user){
+      toast.success(message)
+      navigate("/")
+    } 
+    dispatch(reset())
+  },[user, isError, isSuccess, message, navigate, dispatch])
+
 
   const onSubmit = (e) => {
     e.preventDefault()
+    const userData = {
+      email, password
+    }
+    dispatch(login(userData))
+
   }
+
+  if (isLoading) return <Spinner />
+
 
   return (
     <>
@@ -36,9 +62,9 @@ export const Login = () => {
             <input 
               type="text" 
               className="form-control" 
-              id="username"
-              name="username"
-              value={username}
+              id="email"
+              name="email"
+              value={email}
               placeholder="Nombre de usuario"
               onChange={onChange}
             />
