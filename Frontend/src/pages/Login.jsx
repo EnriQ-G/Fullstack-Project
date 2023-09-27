@@ -29,7 +29,7 @@ export const Login = () => {
     if (isError){
       toast.error(message)
     } if(isSuccess || user){
-      toast.success(message)
+      // toast.success(message)
       navigate("/")
     } 
     dispatch(reset())
@@ -60,12 +60,12 @@ export const Login = () => {
         <form onSubmit={onSubmit}>
           <div className="form-group">
             <input 
-              type="text" 
+              type="email" 
               className="form-control" 
               id="email"
               name="email"
               value={email}
-              placeholder="Nombre de usuario"
+              placeholder="Email"
               onChange={onChange}
             />
           </div>       

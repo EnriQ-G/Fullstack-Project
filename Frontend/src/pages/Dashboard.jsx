@@ -42,11 +42,11 @@ const Dashboard = () => {
             </section>
             <TareaForm />
             <section className='content'>
-                {tareaService.length > 0 ? (
+                {tareas.length > 0 ? (
                     <div className='tareas'>
-                        {tareas.map((tarea)=>{
+                        {tareas.map((tarea)=>(
                             <TareaItem key={tarea._id} tarea={tarea}/>
-                        })}
+                        ))}
                     </div>
                 ):
                 (

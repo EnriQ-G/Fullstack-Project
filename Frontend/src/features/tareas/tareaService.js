@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = ''
+const API_URL = 'https://perfect-erin-goldfish.cyclic.app/api/tareas/'
 
 //crear una nueva tarea
-const createTarea = async (tareaData, token) =>{
+const createTarea = async (tareaData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -14,8 +14,8 @@ const createTarea = async (tareaData, token) =>{
     return response.data
 }
 
-//obtener las tareas
-const getTareas = async (token) =>{
+//obtener tareas
+const getTareas = async (token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -26,8 +26,8 @@ const getTareas = async (token) =>{
     return response.data
 }
 
-//borrar tarea
-const deleteTarea = async (id, token) =>{
+//delete tareas
+const deleteTarea = async (id, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -38,7 +38,7 @@ const deleteTarea = async (id, token) =>{
     return response.data
 }
 
-const tareaService ={
+const tareaService = {
     createTarea,
     getTareas,
     deleteTarea

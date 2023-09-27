@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {createTarea, getTareas} from '../features/tareas/tareaService'
+import {createTarea} from '../features/tareas/tareaSlice'
 
 const TareaForm = () => {
     
